@@ -1,8 +1,5 @@
 package br.com.aurindo.reader.model.cotacaoDolar;
 
-import br.com.aurindo.reader.model.desemprego.AnoDim;
-import br.com.aurindo.reader.model.ipca.MesDim;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,20 +14,12 @@ public class CotacaoDolarFactor implements Serializable {
     private double cotacaoVenda;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    private AnoDim anoDim;
+    private DataCotacaoDim dataCotacaoDim;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    private MesDim mesDim;
-
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    private DiaDim diaDim;
-
-    public CotacaoDolarFactor(double cotacaoCompra, double cotacaoVenda, AnoDim anoDim, MesDim mesDim, DiaDim diaDim) {
+    public CotacaoDolarFactor(double cotacaoCompra, double cotacaoVenda, int ano, String mes, int dia) {
         this.cotacaoCompra = cotacaoCompra;
         this.cotacaoVenda = cotacaoVenda;
-        this.anoDim = anoDim;
-        this.mesDim = mesDim;
-        this.diaDim = diaDim;
+        this.dataCotacaoDim = new DataCotacaoDim(ano, mes, dia);
     }
 
     public Long getId() {
@@ -57,28 +46,11 @@ public class CotacaoDolarFactor implements Serializable {
         this.cotacaoVenda = cotacaoVenda;
     }
 
-    public AnoDim getAnoDim() {
-        return anoDim;
+    public DataCotacaoDim getDataCotacaoDim() {
+        return dataCotacaoDim;
     }
 
-    public void setAnoDim(AnoDim anoDim) {
-        this.anoDim = anoDim;
+    public void setDataCotacaoDim(DataCotacaoDim dataCotacaoDim) {
+        this.dataCotacaoDim = dataCotacaoDim;
     }
-
-    public MesDim getMesDim() {
-        return mesDim;
-    }
-
-    public void setMesDim(MesDim mesDim) {
-        this.mesDim = mesDim;
-    }
-
-    public DiaDim getDiaDim() {
-        return diaDim;
-    }
-
-    public void setDiaDim(DiaDim diaDim) {
-        this.diaDim = diaDim;
-    }
-
 }

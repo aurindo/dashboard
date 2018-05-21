@@ -1,8 +1,6 @@
 package br.com.aurindo.reader.service;
 
-import br.com.aurindo.reader.model.desemprego.AnoDim;
 import br.com.aurindo.reader.model.ipca.IpcaFactor;
-import br.com.aurindo.reader.model.ipca.MesDim;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -91,7 +89,7 @@ public class IPCAReadServiceImpl implements IPCAReadService {
                 String[] mesAnoArray = currentCell.split("/");
                 String mes = mesAnoArray[0];
                 Integer ano = new Integer(mesAnoArray[1]);
-                ipcaMap.put(colIndex, new IpcaFactor(new MesDim(mes), new AnoDim(ano)));
+                ipcaMap.put(colIndex, new IpcaFactor(mes, ano));
             }
         }
     }

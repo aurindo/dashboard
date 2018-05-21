@@ -1,15 +1,12 @@
 package br.com.aurindo.reader.service;
 
 import br.com.aurindo.reader.model.cotacaoDolar.CotacaoDolarFactor;
-import br.com.aurindo.reader.model.cotacaoDolar.DiaDim;
-import br.com.aurindo.reader.model.desemprego.AnoDim;
-import br.com.aurindo.reader.model.desemprego.DesempregoFactor;
-import br.com.aurindo.reader.model.ipca.MesDim;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -52,9 +49,9 @@ public class CotacaoDolarReadServiceImpl implements CotacaoDolarReadService {
         return new CotacaoDolarFactor(
                 cotacaoCompra,
                 cotacaoVenda,
-                new AnoDim(new Integer(periodArray[0])),
-                new MesDim(periodArray[1]),
-                new DiaDim(new Integer(periodArray[2])));
+                new Integer(periodArray[0]),
+                periodArray[1],
+                new Integer(periodArray[2]));
     }
 
 }

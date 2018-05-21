@@ -1,8 +1,8 @@
 package br.com.aurindo.reader;
 
 import br.com.aurindo.reader.service.CotacaoDolarProcessService;
-import br.com.aurindo.reader.service.DesempregoProcessService;
 import br.com.aurindo.reader.service.IPCAProcessService;
+import br.com.aurindo.reader.service.PIBProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.Banner;
@@ -21,16 +21,13 @@ import static java.lang.System.exit;
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private DesempregoProcessService desempregoProcessService;
-
-    @Autowired
     private IPCAProcessService ipcaProcessService;
 
     @Autowired
     private CotacaoDolarProcessService cotacaoDolarProcessService;
 
-    @Value("${path.desemprego}")
-    private String desempregoPath;
+    @Autowired
+    private PIBProcessService pibProcessService;
 
     @Value("${path.ipca1}")
     private String ipca1path;
@@ -47,6 +44,9 @@ public class Application implements CommandLineRunner {
     @Value("${path.cotacaoDolar}")
     private String cotacaoDolar;
 
+    @Value("${path.pib}")
+    private String pibPath;
+
     public static void main(String[] args) throws Exception {
         SpringApplication app = new SpringApplication(Application.class);
         app.setBannerMode(Banner.Mode.OFF);
@@ -56,9 +56,9 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("Inicio processamento dados desemprego");
-        desempregoProcessService.processDesemprego(desempregoPath);
-        System.out.println("Fim processamento dados desemprego");
+        System.out.println("Inicio processamento dados PIB");
+        pibProcessService.processPIB(pibPath);
+        System.out.println("Fim processamento dados PIB");
 
         System.out.println("Inicio processamento dados IPCA");
         Set<String> ipcaPathSet = new HashSet<>();

@@ -1,7 +1,5 @@
 package br.com.aurindo.reader.model.ipca;
 
-import br.com.aurindo.reader.model.desemprego.AnoDim;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,30 +17,25 @@ public class IpcaFactor implements Serializable {
     private double educacao;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    private AnoDim anoDim;
-
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    private MesDim mesDim;
+    private DataIpcaDim data;
 
     public IpcaFactor(
-                      MesDim mesDim,
-                      AnoDim anoDim) {
-        this.anoDim = anoDim;
-        this.mesDim = mesDim;
+                      String month,
+                      int year) {
+        data = new DataIpcaDim(year, month);
     }
 
     public IpcaFactor(double habitacao,
                       double vestuario,
                       double transportes,
                       double educacao,
-                      MesDim mesDim,
-                      AnoDim anoDim) {
+                      String month,
+                      int year) {
         this.habitacao = habitacao;
         this.vestuario = vestuario;
         this.transportes = transportes;
         this.educacao = educacao;
-        this.anoDim = anoDim;
-        this.mesDim = mesDim;
+        data = new DataIpcaDim(year, month);
     }
 
     public Long getId() {
@@ -85,19 +78,11 @@ public class IpcaFactor implements Serializable {
         this.educacao = educacao;
     }
 
-    public AnoDim getAnoDim() {
-        return anoDim;
+    public DataIpcaDim getData() {
+        return data;
     }
 
-    public void setAnoDim(AnoDim anoDim) {
-        this.anoDim = anoDim;
-    }
-
-    public MesDim getMesDim() {
-        return mesDim;
-    }
-
-    public void setMesDim(MesDim mesDim) {
-        this.mesDim = mesDim;
+    public void setData(DataIpcaDim data) {
+        this.data = data;
     }
 }
