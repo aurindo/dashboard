@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 public class CotacaoDolarReadServiceImpl implements CotacaoDolarReadService {
 
     @Override
-    public Set<CotacaoDolarFactor> readJSon(String path) {
+    public List<CotacaoDolarFactor> readJSon(String path) {
 
-        Set<CotacaoDolarFactor> cotacaoDolarSet = new HashSet<>();
+        List<CotacaoDolarFactor> cotacaoDolarSet = new ArrayList<>();
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -30,7 +30,7 @@ public class CotacaoDolarReadServiceImpl implements CotacaoDolarReadService {
 
             cotacaoDolarSet = values.stream().map(linkedHashMap -> {
                 return wrapCotacaoDolarFactor(linkedHashMap);
-            }).collect(Collectors.toSet());
+            }).collect(Collectors.toList());
 
         } catch (IOException e) {
             e.printStackTrace();

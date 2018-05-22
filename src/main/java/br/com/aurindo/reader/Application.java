@@ -11,7 +11,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static java.lang.System.exit;
@@ -61,7 +63,7 @@ public class Application implements CommandLineRunner {
         System.out.println("Fim processamento dados PIB");
 
         System.out.println("Inicio processamento dados IPCA");
-        Set<String> ipcaPathSet = new HashSet<>();
+        List<String> ipcaPathSet = new ArrayList<>();
         ipcaPathSet.add(ipca1path);
         ipcaPathSet.add(ipca2path);
         ipcaPathSet.add(ipca3path);

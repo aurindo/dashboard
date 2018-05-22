@@ -12,7 +12,7 @@ public class IPCAReadServiceImpl implements IPCAReadService {
     private static final String COMMA = "\t";
 
     @Override
-    public Set<IpcaFactor> read(String ipcaPath) {
+    public List<IpcaFactor> read(String ipcaPath) {
 
         Map<Integer, IpcaFactor> ipcaMap = new HashMap<>();
 
@@ -42,7 +42,7 @@ public class IPCAReadServiceImpl implements IPCAReadService {
             e.printStackTrace();
         }
 
-        return new HashSet<>(ipcaMap.values());
+        return new ArrayList<>(ipcaMap.values());
     }
 
     private void processBody(String[] cellIterator, Map<Integer, IpcaFactor> ipcaMap) {
@@ -89,6 +89,13 @@ public class IPCAReadServiceImpl implements IPCAReadService {
                 String[] mesAnoArray = currentCell.split("/");
                 String mes = mesAnoArray[0];
                 Integer ano = new Integer(mesAnoArray[1]);
+
+                if (ano < 80) {
+                    ano += 2000;
+                } else {
+                    ano += 1900;
+                }
+
                 ipcaMap.put(colIndex, new IpcaFactor(mes, ano));
             }
         }

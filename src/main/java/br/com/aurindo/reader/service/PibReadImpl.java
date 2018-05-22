@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 public class PibReadImpl implements PibRead {
 
     @Override
-    public Set<PibFactor> read(String path) {
-        Set<PibFactor> cotacaoDolarSet = new HashSet<>();
+    public List<PibFactor> read(String path) {
+        List<PibFactor> cotacaoDolarSet = new ArrayList<>();
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -31,7 +31,7 @@ public class PibReadImpl implements PibRead {
 
             cotacaoDolarSet = values.stream().map(linkedHashMap -> {
                 return wrapCotacaoDolarFactor(linkedHashMap);
-            }).collect(Collectors.toSet());
+            }).collect(Collectors.toList());
 
         } catch (IOException e) {
             e.printStackTrace();

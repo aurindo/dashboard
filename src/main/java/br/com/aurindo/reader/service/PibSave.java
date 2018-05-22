@@ -2,10 +2,10 @@ package br.com.aurindo.reader.service;
 
 import br.com.aurindo.reader.model.pib.PibFactor;
 
-import java.util.Set;
+import java.util.List;
 
 public interface PibSave {
 
-    void save(Set<PibFactor> pibs);
+    void save(List<PibFactor> pibs);
 
 }

@@ -5,7 +5,7 @@ import br.com.aurindo.reader.repository.PibRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class PibSaveImpl implements PibSave {
@@ -14,8 +14,8 @@ public class PibSaveImpl implements PibSave {
     private PibRepository pibRepository;
 
     @Override
-    public void save(Set<PibFactor> pibs) {
-        pibs.parallelStream().forEach(pib -> {
+    public void save(List<PibFactor> pibs) {
+        pibs.stream().forEach(pib -> {
             pibRepository.save(pib);
         });
     }

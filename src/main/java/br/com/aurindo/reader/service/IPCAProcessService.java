@@ -1,7 +1,7 @@
 package br.com.aurindo.reader.service;
 
-import java.util.Set;
+import java.util.List;
 
 public interface IPCAProcessService {
-    void processIPCA(Set<String> ipcaPathSet);
+    void processIPCA(List<String> ipcaPathSet);
 }

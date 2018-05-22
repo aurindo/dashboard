@@ -2,10 +2,10 @@ package br.com.aurindo.reader.service;
 
 import br.com.aurindo.reader.model.cotacaoDolar.CotacaoDolarFactor;
 
-import java.util.Set;
+import java.util.List;
 
 public interface CotacaoDolarReadService {
 
-    Set<CotacaoDolarFactor> readJSon(String path);
+    List<CotacaoDolarFactor> readJSon(String path);
 
 }

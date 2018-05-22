@@ -4,7 +4,7 @@ import br.com.aurindo.reader.model.pib.PibFactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class PIBProcessServiceImpl implements PIBProcessService {
@@ -17,7 +17,7 @@ public class PIBProcessServiceImpl implements PIBProcessService {
 
     @Override
     public void processPIB(String pibPath) {
-        Set<PibFactor> pibs = pibRead.read(pibPath);
+        List<PibFactor> pibs = pibRead.read(pibPath);
         pibSave.save(pibs);
     }
 
